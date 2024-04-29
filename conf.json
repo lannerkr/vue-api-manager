@@ -1,0 +1,10 @@
+{
+	"ServerPort": "3435",
+	"API_url": "https://apit.ilmovdi.com:8809",
+	"Cert": "wildcard.ilmovdi.com.crt",
+	"CertKey": "wildcard.ilmovdi.com.key",
+	"IPaccess": ["192.168.0.198", "192.168.0.10", "192.168.0.199", "192.168.0.169"],
+	"LogPath": "/data/docker/utils/vue-api-manager/vue-api-manager.log",
+	"Vue_env": "/data/docker/utils/vue-api-manager/dist/config.js",
+	"SRC_dir": "/mnt/src/dist"
+}

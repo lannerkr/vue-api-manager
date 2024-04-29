@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AppLayout from '@/layout/AppLayout.vue';
+//import AppLayout from '@/layout/AppLayout.vue';
+import AppLayout from '@/layout/AppLayoutNew.vue';
+import { useAuthStore } from '@/stores'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,142 +13,61 @@ const router = createRouter({
                 {
                     path: '/',
                     name: 'dashboard',
-                    component: () => import('@/views/Dashboard.vue')
+                    component: () => import('@/views/DashboardNew.vue')
                 },
                 {
-                    path: '/uikit/formlayout',
-                    name: 'formlayout',
-                    component: () => import('@/views/uikit/FormLayout.vue')
+                    path: '/store',
+                    name: 'store',
+                    component: () => import('@/views/TheStore.vue')
                 },
                 {
-                    path: '/uikit/input',
-                    name: 'input',
-                    component: () => import('@/views/uikit/Input.vue')
+                    path: '/partner',
+                    name: 'partner',
+                    component: () => import('@/views/ThePartner.vue')
                 },
                 {
-                    path: '/uikit/floatlabel',
-                    name: 'floatlabel',
-                    component: () => import('@/views/uikit/FloatLabel.vue')
+                    path: '/EMP-GOTP',
+                    name: 'emp-gotp',
+                    component: () => import('@/views/TheEmpGOTP.vue')
                 },
                 {
-                    path: '/uikit/invalidstate',
-                    name: 'invalidstate',
-                    component: () => import('@/views/uikit/InvalidState.vue')
+                    path: '/home',
+                    name: 'dashboardNew',
+                    component: () => import('@/views/DashboardNew.vue')
                 },
                 {
-                    path: '/uikit/button',
-                    name: 'button',
-                    component: () => import('@/views/uikit/Button.vue')
+                    path: '/activeUsers',
+                    name: 'activeUsers',
+                    component: () => import('@/views/ActiveUsersTable.vue')
                 },
                 {
-                    path: '/uikit/table',
-                    name: 'table',
-                    component: () => import('@/views/uikit/Table.vue')
+                    path: '/users/:realm/:username',
+                    name: 'usertable',
+                    component: () => import('@/views/UserTable.vue'),
+                    props: true,
                 },
                 {
-                    path: '/uikit/list',
-                    name: 'list',
-                    component: () => import('@/views/uikit/List.vue')
+                    path: '/users/create',
+                    name: 'userCreate',
+                    component: () => import('@/views/UserCreate.vue'),
+                    props: true,
                 },
                 {
-                    path: '/uikit/tree',
-                    name: 'tree',
-                    component: () => import('@/views/uikit/Tree.vue')
+                    path: '/account',
+                    name: 'account',
+                    component: () => import('@/views/auth/AdminList.vue')
                 },
                 {
-                    path: '/uikit/panel',
-                    name: 'panel',
-                    component: () => import('@/views/uikit/Panels.vue')
-                },
-
-                {
-                    path: '/uikit/overlay',
-                    name: 'overlay',
-                    component: () => import('@/views/uikit/Overlay.vue')
+                    path: '/account/add',
+                    name: 'accountadd',
+                    component: () => import('@/views/auth/AdminEdit.vue')
                 },
                 {
-                    path: '/uikit/media',
-                    name: 'media',
-                    component: () => import('@/views/uikit/Media.vue')
-                },
-                {
-                    path: '/uikit/menu',
-                    component: () => import('@/views/uikit/Menu.vue'),
-                    children: [
-                        {
-                            path: '/uikit/menu',
-                            component: () => import('@/views/uikit/menu/PersonalDemo.vue')
-                        },
-                        {
-                            path: '/uikit/menu/seat',
-                            component: () => import('@/views/uikit/menu/SeatDemo.vue')
-                        },
-                        {
-                            path: '/uikit/menu/payment',
-                            component: () => import('@/views/uikit/menu/PaymentDemo.vue')
-                        },
-                        {
-                            path: '/uikit/menu/confirmation',
-                            component: () => import('@/views/uikit/menu/ConfirmationDemo.vue')
-                        }
-                    ]
-                },
-                {
-                    path: '/uikit/message',
-                    name: 'message',
-                    component: () => import('@/views/uikit/Messages.vue')
-                },
-                {
-                    path: '/uikit/file',
-                    name: 'file',
-                    component: () => import('@/views/uikit/File.vue')
-                },
-                {
-                    path: '/uikit/charts',
-                    name: 'charts',
-                    component: () => import('@/views/uikit/Chart.vue')
-                },
-                {
-                    path: '/uikit/misc',
-                    name: 'misc',
-                    component: () => import('@/views/uikit/Misc.vue')
-                },
-                {
-                    path: '/blocks',
-                    name: 'blocks',
-                    component: () => import('@/views/utilities/Blocks.vue')
-                },
-                {
-                    path: '/utilities/icons',
-                    name: 'icons',
-                    component: () => import('@/views/utilities/Icons.vue')
-                },
-                {
-                    path: '/pages/timeline',
-                    name: 'timeline',
-                    component: () => import('@/views/pages/Timeline.vue')
-                },
-                {
-                    path: '/pages/empty',
-                    name: 'empty',
-                    component: () => import('@/views/pages/Empty.vue')
-                },
-                {
-                    path: '/pages/crud',
-                    name: 'crud',
-                    component: () => import('@/views/pages/Crud.vue')
-                },
-                {
-                    path: '/documentation',
-                    name: 'documentation',
-                    component: () => import('@/views/utilities/Documentation.vue')
+                    path: '/account/edit/:uid',
+                    name: 'accountedit',
+                    component: () => import('@/views/auth/AdminEdit.vue')
                 }
             ]
-        },
-        {
-            path: '/landing',
-            name: 'landing',
-            component: () => import('@/views/pages/Landing.vue')
         },
         {
             path: '/pages/notfound',
@@ -157,7 +78,7 @@ const router = createRouter({
         {
             path: '/auth/login',
             name: 'login',
-            component: () => import('@/views/pages/auth/Login.vue')
+            component: () => import('@/views/auth/Login.vue')
         },
         {
             path: '/auth/access',
@@ -171,5 +92,26 @@ const router = createRouter({
         }
     ]
 });
+
+router.beforeEach(async (to) => {
+  
+    // redirect to login page if not logged in and trying to access a restricted page 
+    const publicPages = ['/auth/login', '/pages/notfound'];
+    const authRequired = !publicPages.includes(to.path);
+    const adminPages = ['/EMP-GOTP','/account/add']
+    const adminRquired = adminPages.includes(to.path)
+  
+    const authStore = useAuthStore()
+   
+    // if (authStore.userinfo.exp*1000 < Date.now()) {
+    //   console.log(authStore.userinfo.exp*1000,", ",Date.now())
+    //   console.log("token expired at:" + new Date(authStore.userinfo.exp*1000))
+    // }
+    if (authRequired && !authStore.userinfo.jwtToken) {
+        return '/auth/login';
+    } else if (adminRquired && !authStore.userinfo.isAdmin) {
+      return '/auth/access'
+    }
+  })
 
 export default router;
