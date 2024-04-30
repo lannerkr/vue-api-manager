@@ -40,5 +40,7 @@ public/themes/mira/
 public/themes/nano/
 
 # Certificate
-wildcard.ilmovdi.com.crt
-wildcard.ilmovdi.com.key
+*.crt
+*.key
+*.cer
+
