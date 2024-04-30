@@ -1,6 +1,6 @@
 This template should help get you started developing with Vue 3 in Vite.
 
-Modified from [sakari.primevue.org](https://sakai.primevue.org/) template.
+Modified from [sakai.primevue.org](https://sakai.primevue.org/) template.
 
 ## Customize configuration
 
