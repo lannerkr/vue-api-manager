@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"io"
 	"log"
 	"log/slog"
 	"net/http"
@@ -16,6 +17,7 @@ import (
 )
 
 // version 3.0.2 20240429
+// dist version 3.2 20240514
 
 var serverPort string
 var logger *httplog.Logger
@@ -63,6 +65,7 @@ func main() {
 		}
 		http.ServeFile(w, r, staticDir+r.URL.Path)
 	})
+	router.Post("/upload", uploadHandler)
 
 	// Start server
 	serverPort = configuration.ServerPort
@@ -74,4 +77,47 @@ func main() {
 	if err := http.ListenAndServeTLS(":"+serverPort, configuration.Cert, configuration.CertKey, router); err != nil {
 		fmt.Println("ListenAndServe: ", err)
 	}
+}
+
+func uploadHandler(w http.ResponseWriter, r *http.Request) {
+	// truncated for brevity
+
+	// The argument to FormFile must match the name attribute
+	// of the file input on the frontend
+	file, fileHeader, err := r.FormFile("file")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	//log.Printf("[fileHeader] :%v\n", fileHeader.Filename)
+
+	defer file.Close()
+
+	// Create the uploads folder if it doesn't
+	// already exist
+	// err = os.MkdirAll("/mnt/download/", os.ModePerm)
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
+
+	// Create a new file in the uploads directory
+	// dst, err := os.Create(fmt.Sprintf("./dist/download/%s", filepath.Ext(fileHeader.Filename)))
+	dst, err := os.Create(fmt.Sprintf("/mnt/download/%s", fileHeader.Filename))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	defer dst.Close()
+
+	// Copy the uploaded file to the filesystem
+	// at the specified destination
+	_, err = io.Copy(dst, file)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprintf(w, "Upload successful")
 }

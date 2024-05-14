@@ -8,8 +8,10 @@
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
     },
     "dependencies": {
+        "@syncfusion/ej2-vue-filemanager": "^25.2.3",
         "axios": "^1.6.8",
         "chart.js": "3.3.2",
+        "js-file-download": "^0.4.12",
         "pinia": "^2.1.7",
         "primeflex": "^3.3.1",
         "primeicons": "^6.0.1",
@@ -20,6 +22,7 @@
     },
     "devDependencies": {
         "@rushstack/eslint-patch": "^1.1.4",
+        "@types/node": "^20.12.8",
         "@vitejs/plugin-vue": "^4.1.0",
         "@vue/eslint-config-prettier": "^7.0.0",
         "eslint": "^8.22.0",

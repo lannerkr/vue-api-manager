@@ -44,3 +44,10 @@ public/themes/nano/
 *.key
 *.cer
 
+api-man-front
+.gitignore
+.gitignore
+docker/api-man-front-v4.3
+docker/dist_v3.2.tar
+api-man-front
+api-man-front

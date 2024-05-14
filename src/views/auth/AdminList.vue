@@ -41,7 +41,14 @@ function routePush(route) {
 		<h1 style="text-align:center; color:green">Users LIST [ ISADMIN : {{ authStore.userinfo.isAdmin }} ]</h1>
 	</div><br/>
     <div style="padding-left: 10%;">
-        <Button v-show="authStore.userinfo.isAdmin" label="Add User" class="w-full p-1 text-m" raised @click="routePush('/account/add')" style=" max-width: 150px;"></Button>
+        <div>
+            <td>
+                <Button v-show="authStore.userinfo.isAdmin" label="Add User" class="w-full p-1 text-m" raised @click="routePush('/account/add')" style=" max-width: 150px;"></Button>
+            </td>
+            <td style="padding-left: 20px">
+                <Button v-show="authStore.userinfo.isAdmin" label="File mananger" class="w-full p-1 text-m" raised @click="routePush('/account/files')" style=" max-width: 150px;"></Button>
+            </td>
+        </div>
     </div><br/>
     
     <!-- <router-link v-show="authStore.userinfo.isAdmin" to="/account/add" >Add User</router-link></h1> -->
@@ -106,7 +113,7 @@ function routePush(route) {
     background-color: #f44336; /* Red */
 }
 
-td {
+tbody tr td {
     border-bottom: 1px solid #ddd;
 }
 </style>

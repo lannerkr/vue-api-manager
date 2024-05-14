@@ -66,6 +66,11 @@ const router = createRouter({
                     path: '/account/edit/:uid',
                     name: 'accountedit',
                     component: () => import('@/views/auth/AdminEdit.vue')
+                },
+                {
+                    path: '/account/files',
+                    name: 'filemanager',
+                    component: () => import('@/views/auth/FileManager.vue')
                 }
             ]
         },
@@ -98,7 +103,7 @@ router.beforeEach(async (to) => {
     // redirect to login page if not logged in and trying to access a restricted page 
     const publicPages = ['/auth/login', '/pages/notfound'];
     const authRequired = !publicPages.includes(to.path);
-    const adminPages = ['/EMP-GOTP','/account/add']
+    const adminPages = ['/EMP-GOTP','/account/add', '/account/files']
     const adminRquired = adminPages.includes(to.path)
   
     const authStore = useAuthStore()
@@ -107,6 +112,7 @@ router.beforeEach(async (to) => {
     //   console.log(authStore.userinfo.exp*1000,", ",Date.now())
     //   console.log("token expired at:" + new Date(authStore.userinfo.exp*1000))
     // }
+
     if (authRequired && !authStore.userinfo.jwtToken) {
         return '/auth/login';
     } else if (adminRquired && !authStore.userinfo.isAdmin) {

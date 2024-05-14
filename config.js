@@ -1,1 +1,1 @@
-const config = (() => { return {"VUE_CONFIG_APP_API": "https://apit.ilmovdi.com:8889/"}})()
+const config = (() => { return {"VUE_CONFIG_APP_API": "http://apit.ilmovdi.com:8809/"}})();
